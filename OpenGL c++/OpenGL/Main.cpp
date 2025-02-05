@@ -1,7 +1,7 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <cmath> 
+#include <cmath>
 #include"ShaderClass.h"
 #include"VAO.h"
 #include"VBO.h"
@@ -54,10 +54,12 @@ int main() {
     VAO VAO1;
     VAO1.Bind();
 
-    
+    VBO VBO1(vertices, sizeof(vertices));
+    EBO EBO1(indices, sizeof(indices));
 
-
-   
+    VAO1.linkVBO(VBO1, 0);
+    VAO1.Unbind();
+    VBO1.Unbind();
 
     
 
@@ -65,14 +67,17 @@ int main() {
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
-        glUseProgram(ShaderProgram);
-        glBindVertexArray(VAO);
+        ShaderProgram.Activate();
+        VAO1.Bind();
         glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-
+    VAO1.Delete();
+    VBO1.Delete();
+    EBO1.Delete();
+    ShaderProgram.Delete();
     
     glfwDestroyWindow(window);
     glfwTerminate();

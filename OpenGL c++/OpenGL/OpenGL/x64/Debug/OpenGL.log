@@ -1,2 +1,7 @@
-﻿  Main.cpp
+﻿  EBO.cpp
+  Main.cpp
+  ShaderClass.cpp
+  VAO.cpp
+  VBO.cpp
+  Generating Code...
   OpenGL.vcxproj -> D:\Projects\dev\OpenGL c++\OpenGL\x64\Debug\OpenGL.exe
